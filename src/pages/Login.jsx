@@ -98,6 +98,12 @@ function Login({ onLoggedIn }) {
         <p className="auth-switch">
           Don't have an account? <Link to="/signup">Sign up</Link>
         </p>
+        <p className="auth-switch">
+          {/* Hosted by the backend: emails a reset link for the shared account */}
+          <a href={`${API_BASE_URL}/forgotPassword?app=shared&return=${encodeURIComponent(window.location.href)}`}>
+            Forgot password?
+          </a>
+        </p>
       </div>
     </div>
   );

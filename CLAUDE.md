@@ -87,3 +87,8 @@ and send them to `/login`" rather than retrying or just toasting the error.
   (mounted in `main.jsx`) to get `{ success, error, info }`.
 - Styling is plain CSS in `src/App.css` / `src/index.css` — CSS custom properties on `:root` for
   theming, overridden under `:root[data-theme="dark"]`. No CSS-in-JS or utility framework.
+
+## Legal and security (keep these)
+
+- Sign-up (email **and** Google) needs the "I'm 13 or older and agree to the Terms of Use and Privacy Policy" checkbox in `pages/Signup.jsx`.
+- `/privacy` and `/terms` are `pages/Legal.jsx`, linked from sign-up and the footer. Keep them accurate (the account is shared with Nsoro and GH-GPT).

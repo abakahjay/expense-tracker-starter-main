@@ -15,11 +15,17 @@ function Signup({ onLoggedIn }) {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
   const [submitting, setSubmitting] = useState(false);
+  const [agreed, setAgreed] = useState(false); // age + terms, required for email and Google sign-up
+  const AGREE_FIRST = "Please confirm you are 13 or older and agree to the terms.";
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
 
+    if (!agreed) {
+      setError(AGREE_FIRST);
+      return;
+    }
     if (!firstName || !lastName || !username || !email || !password) {
       setError("Fill in all fields.");
       return;
@@ -67,7 +73,12 @@ function Signup({ onLoggedIn }) {
         <h1>Create an account</h1>
         <p className="subtitle">Start tracking your income and expenses.</p>
 
-        <a className="btn-google" href={googleLoginUrl()}>
+        <label className="consent-row">
+          <input type="checkbox" checked={agreed} onChange={(e) => { setAgreed(e.target.checked); if (e.target.checked && error === AGREE_FIRST) setError(""); }} />
+          <span>I&apos;m 13 or older and agree to the <Link to="/terms">Terms of Use</Link> and <Link to="/privacy">Privacy Policy</Link>.</span>
+        </label>
+
+        <a className="btn-google" href={googleLoginUrl()} onClick={(e) => { if (!agreed) { e.preventDefault(); setError(AGREE_FIRST); } }}>
           <svg viewBox="0 0 48 48" width="18" height="18" aria-hidden="true">
             <path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3c-1.6 4.6-6 8-11.3 8-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.1 8 3l6-6C34 5.1 29.3 3 24 3 12.4 3 3 12.4 3 24s9.4 21 21 21 21-9.4 21-21c0-1.4-.1-2.5-.4-3.5z" />
             <path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.6 16 19 13 24 13c3.1 0 5.8 1.1 8 3l6-6C34 5.1 29.3 3 24 3c-7.4 0-13.8 4.1-17.1 10.1z" />

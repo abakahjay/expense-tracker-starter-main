@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 const SOCIAL_LINKS = [
   {
     name: 'Portfolio',
@@ -79,6 +80,7 @@ function Footer() {
         </div>
 
         <p className="footer-credit">Made with love by Abakah Joshua</p>
+        <p className="footer-legal"><Link to="/terms">Terms of Use</Link> · <Link to="/privacy">Privacy Policy</Link></p>
         <p className="footer-copyright">&copy; {year} Finance Tracker. All rights reserved.</p>
       </div>
     </footer>

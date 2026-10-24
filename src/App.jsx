@@ -3,6 +3,7 @@ import { Route, Routes } from 'react-router-dom'
 import './App.css'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
+import Legal from './pages/Legal'
 import Landing from './pages/Landing'
 import Dashboard from './pages/Dashboard'
 import Login from './pages/Login'
@@ -63,6 +64,8 @@ function App() {
           <Route path="/login" element={<Login onLoggedIn={handleLoggedIn} />} />
           <Route path="/signup" element={<Signup onLoggedIn={handleLoggedIn} />} />
           <Route path="/auth/callback" element={<AuthCallback onLoggedIn={handleLoggedIn} />} />
+          <Route path="/privacy" element={<Legal page="privacy" />} />
+          <Route path="/terms" element={<Legal page="terms" />} />
         </Routes>
       </main>
 

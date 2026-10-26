@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { RotatingWords } from '../components/RotatingWords'
 import { getStoredAuth } from '../utils/auth'
 
 const FEATURES = [
@@ -40,6 +41,9 @@ const FEATURES = [
   },
 ];
 
+// What the hero says you can track; close in length so the centred line stays balanced.
+const HERO_WORDS = ['money', 'salary', 'rent', 'budget']
+
 function Landing() {
   const isLoggedIn = Boolean(getStoredAuth()?.token);
 
@@ -47,7 +51,7 @@ function Landing() {
     <>
       <section className="landing-hero">
         <p className="landing-eyebrow">Personal finance, simplified</p>
-        <h1>Know exactly where your money goes</h1>
+        <h1>Know exactly where your <RotatingWords words={HERO_WORDS} /> goes</h1>
         <p className="landing-lede">
           Track income and expenses, see your balance at a glance, and stay in control —
           all in one clean, fast dashboard.
